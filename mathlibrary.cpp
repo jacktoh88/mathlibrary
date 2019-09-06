@@ -196,3 +196,38 @@ void linearSolver3x3(double (&a)[3][3], double (&b)[3], double (&c)[3]){
     c[1] = aInv[1][0]*b[0] + aInv[1][1]*b[1] + aInv[1][2]*b[2];
     c[2] = aInv[2][0]*b[0] + aInv[2][1]*b[1] + aInv[2][2]*b[2];
 }
+
+//结成
+int factorial(int x){
+
+    if (x==0 or x==1){
+        return 1;
+        }
+        
+    else if (x<0){
+        std::cout << "Error, negative number input to factorial function";
+        return 0;
+        }
+    
+    else {
+        return x * factorial(x-1);
+        }
+}  
+
+//整数指数
+float posIntExp(float x, int y){
+    float ans=1;
+    int i;
+    for (i=0; i<y; i++){
+    	ans=ans*x;
+    }	
+    return ans;
+} 
+   
+//正弦
+float sinEst(float x){
+    float sin;
+    std::cout << posIntExp(x, 3) << std::endl << factorial(3) << std::endl;
+    sin = x - posIntExp(x, 3)/factorial(3) + posIntExp(x, 5)/factorial(5) - posIntExp(x, 7)/factorial(7);
+    return sin;
+    }
