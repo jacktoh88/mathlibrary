@@ -114,4 +114,55 @@ double **transpose(double **in, int r, int c){
 
 }
 
+//逆矩阵
+void inv2x2(double (&in)[2][2], double (&out)[2][2]){
 
+    double det = in[0][0]*in[1][1] - in[0][1]*in[1][0];
+
+    if (det == 0){
+    
+        std::cout << "Error: determinant is 0" << std::endl;
+        return;
+    }
+    
+    out[0][0] = (1.0/det)*in[1][1];
+    out[1][1] = (1.0/det)*in[0][0];
+    out[0][1] = (-1.0/det)*in[0][1];
+    out[1][0] = (-1.0/det)*in[1][0];
+}
+
+//逆矩阵
+void inv3x3(double (&in)[3][3], double (&out)[3][3]){
+
+    double det1 = in[0][0] * (in[1][1]*in[2][2] - in[1][2]*in[2][1]);
+    double det2 = in[0][1] * (in[1][0]*in[2][2] - in[1][2]*in[2][0]);
+    double det3 = in[0][2] * (in[1][0]*in[2][1] - in[1][1]*in[2][0]);
+
+    double det = det1 - det2 + det3;
+
+    if (det == 0){
+    
+        std::cout << "Error: determinant is 0" << std::endl;
+        return;
+    }
+
+    out[0][0] = in[1][1]*in[2][2] - in[1][2]*in[2][1];
+    out[1][0] = -1.0*(in[1][0]*in[2][2] - in[1][2]*in[2][0]);
+    out[2][0] = in[1][0]*in[2][1] - in[1][1]*in[2][0];
+
+    out[0][1] = -1.0*(in[0][1]*in[2][2] - in[0][2]*in[2][1]);
+    out[1][1] = in[0][0]*in[2][2] - in[0][2]*in[2][0];
+    out[2][1] = -1.0*(in[0][0]*in[2][1] - in[0][1]*in[2][0]);
+
+    out[0][2] = in[0][1]*in[1][2] - in[0][2]*in[1][1];
+    out[1][2] = -1.0*(in[0][0]*in[1][2] - in[0][2]*in[1][0]);
+    out[2][2] = in[0][0]*in[1][1] - in[0][1]*in[1][0];
+
+    for (int i=0; i<3; i++){
+    
+        for (int j=0; j<3; j++){
+        
+            out[i][j] *= 1.0/det;
+        }
+    }
+}
