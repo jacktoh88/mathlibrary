@@ -166,3 +166,33 @@ void inv3x3(double (&in)[3][3], double (&out)[3][3]){
         }
     }
 }
+
+//线性求解规划
+void linearSolver2x2(double (&a)[2][2], double (&b)[2], double (&c)[2]){
+
+    // c = A^-1*b
+    double aInv[2][2];
+    inv2x2(a, aInv);
+
+    // [1 2] [5]
+    // [3 4] [6]
+
+    c[0] = aInv[0][0]*b[0] + aInv[0][1]*b[1];
+    c[1] = aInv[1][0]*b[0] + aInv[1][1]*b[1];
+}
+
+//线性求解规划
+void linearSolver3x3(double (&a)[3][3], double (&b)[3], double (&c)[3]){
+
+    // c = A^-1*b
+    double aInv[3][3];
+    inv3x3(a, aInv);
+
+    // [1 2 8] [5]
+    // [3 4 9] [6]
+    // [5 6 9] [7]
+
+    c[0] = aInv[0][0]*b[0] + aInv[0][1]*b[1] + aInv[0][2]*b[2];
+    c[1] = aInv[1][0]*b[0] + aInv[1][1]*b[1] + aInv[1][2]*b[2];
+    c[2] = aInv[2][0]*b[0] + aInv[2][1]*b[1] + aInv[2][2]*b[2];
+}
