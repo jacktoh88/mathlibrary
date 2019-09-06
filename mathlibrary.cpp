@@ -87,3 +87,31 @@ void transpose3x3(double (&in)[3][3], double (&out)[3][3]){
     }
 }
 
+//移项矩阵
+double **transpose(double **in, int r, int c){
+
+    std::cout << "In function" << std::endl;
+    double **out;
+
+    out = (double**) malloc(sizeof(double*)*c);
+
+    for (int i=0; i<c; i++){
+    
+        out[i] = (double*) malloc(sizeof(double)*r);
+    }
+
+    for (int i=0; i<c; i++){
+    
+        for (int j=0; j<r; j++){
+        
+            out[i][j] = in[j][i];
+        }
+    }
+
+    std::cout << "About to return" << std::endl;
+
+    return out;
+
+}
+
+
